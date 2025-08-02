@@ -141,19 +141,86 @@ a, button, input, textarea, select {
 /* Mobile responsiveness enhancements */
 @media (max-width: 768px) {
     .chart-container {
-        height: 250px;
+        height: 200px;
     }
     
     canvas {
-        max-height: 250px !important;
+        max-height: 200px !important;
     }
     
     .text-4xl {
-        font-size: 2rem;
+        font-size: 1.875rem;
+        line-height: 2.25rem;
     }
     
     .text-6xl {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    /* Improve padding and margins on mobile */
+    section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Better button sizing on mobile */
+    .btn-primary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Improve card spacing on mobile */
+    .card-hover {
+        margin-bottom: 1rem;
+    }
+    
+    /* Better navigation on mobile */
+    .sticky {
+        position: sticky;
+        backdrop-filter: blur(8px);
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .chart-container {
+        height: 180px;
+    }
+    
+    canvas {
+        max-height: 180px !important;
+    }
+    
+    .text-3xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+    
+    /* Tighter spacing on very small screens */
+    .space-y-8 > * + * {
+        margin-top: 1.5rem;
+    }
+    
+    .space-y-6 > * + * {
+        margin-top: 1rem;
+    }
+    
+    /* Better form layouts */
+    .grid {
+        gap: 0.75rem;
+    }
+    
+    /* Improve methodology section on mobile */
+    .grid.lg\\:grid-cols-5 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+        text-align: center;
     }
 }
 
