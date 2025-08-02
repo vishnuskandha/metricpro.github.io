@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Log form submission for debugging
+        console.log('Form submitted:', { name, email });
+        
         // Show success message after form submission
         setTimeout(() => {
             contactForm.reset();
