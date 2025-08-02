@@ -39,23 +39,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Contact form submission
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
         // Simple form validation
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         
         if (!name || !email) {
+            e.preventDefault();
             alert('Please fill in all required fields.');
             return;
         }
         
         if (!isValidEmail(email)) {
+            e.preventDefault();
             alert('Please enter a valid email address.');
             return;
         }
         
-        // Simulate form submission
+        // Show success message after form submission
         setTimeout(() => {
             contactForm.reset();
             successMessage.classList.remove('hidden');
