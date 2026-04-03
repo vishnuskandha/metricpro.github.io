@@ -9,64 +9,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const successMessage = document.getElementById('successMessage');
 
     // Mobile menu toggle
-    mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
         });
-    });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
 
     // Help modal functionality
-    helpButton.addEventListener('click', function() {
-        helpModal.classList.remove('hidden');
-    });
+    if (helpButton && helpModal) {
+        helpButton.addEventListener('click', function() {
+            helpModal.classList.remove('hidden');
+        });
 
-    closeHelp.addEventListener('click', function() {
-        helpModal.classList.add('hidden');
-    });
-
-    // Close modal when clicking outside
-    helpModal.addEventListener('click', function(e) {
-        if (e.target === helpModal) {
-            helpModal.classList.add('hidden');
+        if (closeHelp) {
+            closeHelp.addEventListener('click', function() {
+                helpModal.classList.add('hidden');
+            });
         }
-    });
+
+        // Close modal when clicking outside
+        helpModal.addEventListener('click', function(e) {
+            if (e.target === helpModal) {
+                helpModal.classList.add('hidden');
+            }
+        });
+    }
 
     // Contact form submission
-    contactForm.addEventListener('submit', function(e) {
-        // Simple form validation
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        
-        if (!name || !email) {
-            e.preventDefault();
-            alert('Please fill in all required fields.');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            e.preventDefault();
-            alert('Please enter a valid email address.');
-            return;
-        }
-        
-        // Log form submission for debugging
-        console.log('Form submitted:', { name, email });
-        
-        // Show success message after form submission
-        setTimeout(() => {
-            contactForm.reset();
-            successMessage.classList.remove('hidden');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            // Simple form validation
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const name = nameInput ? nameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            
+            if (!name || !email) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                e.preventDefault();
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Show success message after form submission
             setTimeout(() => {
-                successMessage.classList.add('hidden');
-            }, 5000);
-        }, 1000);
-    });
+                contactForm.reset();
+                if (successMessage) {
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                }
+            }, 1000);
+        });
+    }
 
     // Email validation helper
     function isValidEmail(email) {
@@ -98,20 +107,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     let lastScrollY = window.scrollY;
 
-    window.addEventListener('scroll', function() {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = currentScrollY;
-    });
+    if (header) {
+        window.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
 
-    // Add transition to header
-    header.style.transition = 'transform 0.3s ease-in-out';
+        // Add transition to header
+        header.style.transition = 'transform 0.3s ease-in-out';
+    }
 
     // Intersection Observer for animations
     const observerOptions = {
