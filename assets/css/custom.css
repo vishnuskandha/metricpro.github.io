@@ -5,6 +5,10 @@
     scroll-behavior: smooth;
 }
 
+html {
+    scroll-padding-top: 5rem;
+}
+
 body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;

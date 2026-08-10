@@ -1,5 +1,7 @@
 // Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.classList.add('js');
+
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const helpButton = document.getElementById('helpButton');
@@ -11,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function() {
+            const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
         });
 
         // Close mobile menu when clicking on a link
@@ -19,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
             });
         });
     }
@@ -27,18 +32,33 @@ document.addEventListener('DOMContentLoaded', function() {
     if (helpButton && helpModal) {
         helpButton.addEventListener('click', function() {
             helpModal.classList.remove('hidden');
+            helpModal.classList.add('flex');
+            helpButton.setAttribute('aria-expanded', 'true');
+            const closeBtn = document.getElementById('closeHelp');
+            if (closeBtn) closeBtn.focus();
         });
 
+        function closeHelpModal() {
+            helpModal.classList.add('hidden');
+            helpModal.classList.remove('flex');
+            helpButton.setAttribute('aria-expanded', 'false');
+        }
+
         if (closeHelp) {
-            closeHelp.addEventListener('click', function() {
-                helpModal.classList.add('hidden');
-            });
+            closeHelp.addEventListener('click', closeHelpModal);
         }
 
         // Close modal when clicking outside
         helpModal.addEventListener('click', function(e) {
             if (e.target === helpModal) {
-                helpModal.classList.add('hidden');
+                closeHelpModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !helpModal.classList.contains('hidden')) {
+                closeHelpModal();
             }
         });
     }
@@ -144,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // Add CSS for fade-in animation
+    // Add CSS for fade-in animation (only when JavaScript is enabled)
     const style = document.createElement('style');
     style.textContent = `
         .animate-fade-in {
@@ -162,12 +182,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        section {
+        html.js section {
             opacity: 0;
             transform: translateY(30px);
         }
         
-        section.animate-fade-in {
+        html.js section.animate-fade-in {
             opacity: 1;
             transform: translateY(0);
         }

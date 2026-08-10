@@ -1,0 +1,23 @@
+# Local runtime / editor state
+.local/
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+
+# Editors
+.idea/
+.vscode/
+*.swp
