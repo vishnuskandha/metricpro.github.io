@@ -9,7 +9,7 @@ service gaps, and increase customer satisfaction through systematic measurement.
 
 ## Live Site
 
-https://metricpro.github.io/
+https://vishnuskandha.github.io/metricpro.github.io/
 
 ## Features
 
