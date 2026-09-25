@@ -1,4 +1,12 @@
+<div align="center">
+
 # MetricPro Website
+
+**Static marketing website for a customer feedback system, with interactive sample charts, demo request form, and responsive navigation.**
+
+`HTML · CSS · JavaScript · Chart.js`
+
+</div>
 
 
 <!-- README polish: repository metadata badges -->
